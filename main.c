@@ -23,9 +23,12 @@ int main(){
     int secondFork = fork();
 
     if (secondFork != 0){
-      int randomnumber;
-      int status = wait(&randomnumber);
-      printf("Parent: Child Process %d Slept For %d Seconds\n", status, WEXITSTATUS(status));
+      int randomnumber1;
+      int randomnumber2;
+      int status1 = waitpid(firstFork,&randomnumber1,0);
+      printf("Parent: Child Process %d Slept For %d Seconds\n", status1, WEXITSTATUS(status1));
+      int status2 = waitpid(secondFork,&randomnumber2,0);
+      printf("Parent: Child Process %d Slept For %d Seconds\n", status2, WEXITSTATUS(status2));
       printf("Everything is done :)\n");
       return 0;
       }
