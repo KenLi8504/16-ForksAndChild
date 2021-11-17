@@ -19,24 +19,26 @@ int main(){
   int firstSleep = 0;
   int firstFork = fork();
   if (firstFork != 0){
-    int randomnumber = 0;
-    int status = wait(&randomnumber);
-    printf("Parent: Child Process %d Slept For %d Seconds\n", status, WEXITSTATUS(status));
+
     int secondFork = fork();
+
     if (secondFork != 0){
-    int randomnumber = 0;
-    int status = wait(&randomnumber);
-    printf("Parent: Child Process %d Slept For %d Seconds\n", status, WEXITSTATUS(status));
-    printf("Everything is done :)\n");
-    return 0;
+      int randomnumber;
+      int status = wait(&randomnumber);
+      printf("Parent: Child Process %d Slept For %d Seconds\n", status, WEXITSTATUS(status));
+      //printf("Everything is done :)\n");
+      return 0;
+      }
+    else{
+      int time = childStuff();
+      //printf("The time was %d",time);
+      return time;
     }
-  else{
-    int time = childStuff();
-    return time;
   }
-}
+
   else{
     int time = childStuff();
+    printf("The time was %d",time);
     return time;
   }
   return 0;
